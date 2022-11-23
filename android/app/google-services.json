@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "149067224538",
+    "project_id": "wachat-b1c9c",
+    "storage_bucket": "wachat-b1c9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149067224538:android:6c6fc2828ddfc15aa89ce3",
+        "android_client_info": {
+          "package_name": "com.example.chat_firebase2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149067224538-jou59d47cm1rs5h7ehq80bf88mt9uasu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALNa8hoTo15KSta52iEQWXj41gqAU1RtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149067224538-jou59d47cm1rs5h7ehq80bf88mt9uasu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
