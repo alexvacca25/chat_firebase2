@@ -22,6 +22,8 @@ class ControlAuth extends GetxController {
       if (e.code == 'weak-password') {
         return Future.error('Contraseña Debil');
       } else if (e.code == 'email-already-in-use') {
+        _uid.value = "";
+        _email.value = "";
         return Future.error('Email ya esta en Uso');
       }
     }

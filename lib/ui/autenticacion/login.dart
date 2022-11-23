@@ -54,9 +54,13 @@ class _LoginState extends State<Login> {
                       onPressed: () {}, child: const Text('Ingresar')),
                   OutlinedButton(
                       onPressed: () {
-                        ca
-                            .addUser(email.text, passw.text)
-                            .then((value) => null);
+                        ca.addUser(email.text, passw.text).then((value) {
+                          print(ca.uid);
+                          print(ca.emailr);
+                        });
+
+                        print(ca.uid);
+                        print(ca.emailr);
                       },
                       child: const Text('Registrarse'))
                 ],
