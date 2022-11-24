@@ -11,6 +11,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'Sala de Chat',
       theme: ThemeData(primarySwatch: Colors.blueGrey),
+      debugShowCheckedModeBanner: false,
       home: const Login(),
       routes: {
         '/login': (context) => const Login(),

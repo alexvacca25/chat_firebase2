@@ -51,16 +51,37 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(
-                      onPressed: () {}, child: const Text('Ingresar')),
+                      onPressed: () {
+                        ca.ingresarEmail(email.text, passw.text).then((value) {
+                          if (ca.emailr != "") {
+                            Get.offAllNamed('/salachat');
+                          } else {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: 'Validacion de Usuarios',
+                              message: 'Usuario o Contraseña Invalidos',
+                              icon: Icon(Icons.warning),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: Colors.green,
+                            ));
+                          }
+                        });
+                      },
+                      child: const Text('Ingresar')),
                   OutlinedButton(
                       onPressed: () {
                         ca.addUser(email.text, passw.text).then((value) {
-                          print(ca.uid);
-                          print(ca.emailr);
+                          if (ca.emailr != "") {
+                            Get.offAllNamed('/salachat');
+                          } else {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: 'Validacion de Usuarios',
+                              message: 'Usuario o Contraseña Invalidos',
+                              icon: Icon(Icons.warning),
+                              duration: Duration(seconds: 5),
+                              backgroundColor: Colors.blue,
+                            ));
+                          }
                         });
-
-                        print(ca.uid);
-                        print(ca.emailr);
                       },
                       child: const Text('Registrarse'))
                 ],

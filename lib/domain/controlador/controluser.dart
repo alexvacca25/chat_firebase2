@@ -10,6 +10,11 @@ class ControlAuth extends GetxController {
   String get emailr => _email.value;
   String get uid => _uid.value;
 
+  Future<void> reiniciar() async {
+    _email.value = "";
+    _email.refresh();
+  }
+
   Future<void> addUser(String u, String p) async {
     try {
       UserCredential usuario =
@@ -25,6 +30,21 @@ class ControlAuth extends GetxController {
         _uid.value = "";
         _email.value = "";
         return Future.error('Email ya esta en Uso');
+      }
+    }
+  }
+
+  Future<void> ingresarEmail(String u, String p) async {
+    try {
+      UserCredential usuario =
+          await authf.signInWithEmailAndPassword(email: u, password: p);
+      _uid.value = usuario.user!.uid;
+      _email.value = usuario.user!.email;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return Future.error('Usuario No Encontrado');
+      } else if (e.code == 'wrong-password') {
+        return Future.error('Contraseña Incorrecta');
       }
     }
   }
