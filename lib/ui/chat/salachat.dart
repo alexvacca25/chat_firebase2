@@ -1,4 +1,6 @@
+import 'package:chat_firebase2/domain/controlador/controlchat.dart';
 import 'package:chat_firebase2/domain/controlador/controluser.dart';
+import 'package:chat_firebase2/ui/chat/mensajes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,9 +16,10 @@ class _SalaChatState extends State<SalaChat> {
   Widget build(BuildContext context) {
     TextEditingController mensaje = TextEditingController();
     ControlAuth ca = Get.find();
+    ControlChat cc = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WaCHAT'),
+        title: Text('WaCHAT - ${ca.emailr}'),
         actions: [
           IconButton(
               onPressed: () {
@@ -28,8 +31,9 @@ class _SalaChatState extends State<SalaChat> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            const Expanded(child: Mensaje()),
             Row(
               children: [
                 Expanded(
@@ -39,12 +43,21 @@ class _SalaChatState extends State<SalaChat> {
                         const InputDecoration(hintText: 'Ingrese un mensaje'),
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.send))
+                IconButton(
+                    onPressed: () {
+                      if (mensaje.text.isNotEmpty) {
+                        final datos = {
+                          'email': ca.emailr,
+                          'fecha': DateTime.now(),
+                          'mensaje': mensaje.text
+                        };
+                        cc.crearChat(datos);
+                        mensaje.clear();
+                      }
+                    },
+                    icon: const Icon(Icons.send))
               ],
             ),
-            const Text('Texto de usuario 1'),
-            const Text('Texto de usuario 1'),
-            const Text('Texto de usuario 1'),
           ],
         ),
       ),

@@ -64,6 +64,14 @@ class _LoginState extends State<Login> {
                               backgroundColor: Colors.green,
                             ));
                           }
+                        }).catchError((e) {
+                          Get.showSnackbar(GetSnackBar(
+                            title: 'Validacion de Usuarios',
+                            message: '$e',
+                            icon: const Icon(Icons.warning),
+                            duration: const Duration(seconds: 5),
+                            backgroundColor: Colors.blue,
+                          ));
                         });
                       },
                       child: const Text('Ingresar')),
@@ -81,6 +89,14 @@ class _LoginState extends State<Login> {
                               backgroundColor: Colors.blue,
                             ));
                           }
+                        }).catchError((e) {
+                          Get.showSnackbar(GetSnackBar(
+                            title: 'Validacion de Usuarios',
+                            message: '$e',
+                            icon: const Icon(Icons.warning),
+                            duration: const Duration(seconds: 5),
+                            backgroundColor: Colors.blue,
+                          ));
                         });
                       },
                       child: const Text('Registrarse'))
