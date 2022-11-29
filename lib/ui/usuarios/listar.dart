@@ -49,6 +49,9 @@ class _ListarUsuariosState extends State<ListarUsuarios> {
                         ),
                         title: Text(resultado.data!.docs[i].get("nombre")),
                         subtitle: Text(resultado.data!.docs[i].get("email")),
+                        trailing: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.message_sharp)),
                       ),
                     );
                   });
