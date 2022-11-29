@@ -1,3 +1,4 @@
+import 'package:chat_firebase2/domain/controlador/controladduser.dart';
 import 'package:chat_firebase2/domain/controlador/controlchat.dart';
 import 'package:chat_firebase2/domain/controlador/controluser.dart';
 import 'package:chat_firebase2/ui/app.dart';
@@ -20,5 +21,6 @@ void main() async {
 
   Get.put(ControlChat());
   Get.put(ControlAuth());
+  Get.put(ControlAddUser());
   runApp(const App());
 }

@@ -10,6 +10,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController nu = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController passw = TextEditingController();
   ControlAuth ca = Get.find();
@@ -34,6 +35,11 @@ class _LoginState extends State<Login> {
                 ),
               ),
               TextField(
+                controller: nu,
+                decoration:
+                    const InputDecoration(labelText: 'Ingresar el Nombre'),
+              ),
+              TextField(
                 controller: email,
                 decoration:
                     const InputDecoration(labelText: 'Ingresar el Email'),
@@ -54,7 +60,7 @@ class _LoginState extends State<Login> {
                       onPressed: () {
                         ca.ingresarEmail(email.text, passw.text).then((value) {
                           if (ca.emailr != "") {
-                            Get.offAllNamed('/salachat');
+                            Get.offAllNamed('/listausuarios');
                           } else {
                             Get.showSnackbar(const GetSnackBar(
                               title: 'Validacion de Usuarios',
@@ -77,9 +83,11 @@ class _LoginState extends State<Login> {
                       child: const Text('Ingresar')),
                   OutlinedButton(
                       onPressed: () {
-                        ca.addUser(email.text, passw.text).then((value) {
+                        ca
+                            .addUser(email.text, passw.text, nu.text)
+                            .then((value) {
                           if (ca.emailr != "") {
-                            Get.offAllNamed('/salachat');
+                            Get.offAllNamed('/listausuarios');
                           } else {
                             Get.showSnackbar(const GetSnackBar(
                               title: 'Validacion de Usuarios',

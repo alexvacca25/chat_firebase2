@@ -1,3 +1,4 @@
+import 'package:chat_firebase2/domain/controlador/controladduser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,8 @@ class ControlAuth extends GetxController {
     _email.refresh();
   }
 
-  Future<void> addUser(String u, String p) async {
+  Future<void> addUser(String u, String p, String nu) async {
+    ControlAddUser cau = Get.find();
     try {
       UserCredential usuario =
           await authf.createUserWithEmailAndPassword(email: u, password: p);
@@ -23,6 +25,14 @@ class ControlAuth extends GetxController {
 
       _uid.value = usuario.user!.uid;
       _email.value = usuario.user!.email;
+
+      dynamic datos = {
+        'email': _email.value,
+        'nombre': nu,
+        'fecha': DateTime.now(),
+        'uid': _uid.value
+      };
+      cau.crearUsuarios(datos, uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return Future.error('Contraseña Debil');

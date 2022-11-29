@@ -20,13 +20,7 @@ class _SalaChatState extends State<SalaChat> {
     return Scaffold(
       appBar: AppBar(
         title: Text('WaCHAT - ${ca.emailr}'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                ca.reiniciar().then((value) => Get.offAllNamed('/login'));
-              },
-              icon: const Icon(Icons.exit_to_app_rounded))
-        ],
+       
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
