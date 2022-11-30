@@ -1,4 +1,5 @@
 import 'package:chat_firebase2/domain/controlador/controladduser.dart';
+import 'package:chat_firebase2/domain/controlador/controlchatprivado.dart';
 import 'package:chat_firebase2/domain/controlador/controluser.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class ListarUsuarios extends StatefulWidget {
 class _ListarUsuariosState extends State<ListarUsuarios> {
   ControlAuth ca = Get.find();
   ControlAddUser cau = Get.find();
+  ControlChatPrivado ccp = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +52,13 @@ class _ListarUsuariosState extends State<ListarUsuarios> {
                         title: Text(resultado.data!.docs[i].get("nombre")),
                         subtitle: Text(resultado.data!.docs[i].get("email")),
                         trailing: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              ccp
+                                  .actualizarDestino(
+                                      resultado.data!.docs[i].get("nombre"),
+                                      resultado.data!.docs[i].get("email"))
+                                  .then((value) => Get.toNamed('/salaprivada'));
+                            },
                             icon: const Icon(Icons.message_sharp)),
                       ),
                     );
